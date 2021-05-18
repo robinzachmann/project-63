@@ -1,0 +1,265 @@
+.board {
+  margin-right: auto;
+}
+
+.header {
+  height: var(--header-height);
+  background: var(--color-bg);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.title {
+  font-weight: 100;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  flex-grow: 1;
+}
+
+.main {
+  width: 100%;
+  margin-top: var(--header-height);
+}
+
+.table {
+  white-space: nowrap;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  td,
+  th {
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+  }
+
+  tr {
+    th:first-child {
+      position: sticky;
+      left: 0;
+      > * {
+        //box-shadow: 5px 0 0 -2px var(--color-bg);
+      }
+    }
+  }
+
+  tbody {
+    td,
+    th {
+      // border-top: 0.5px solid var(--color-text);
+    }
+    th {
+      //box-shadow: 0 12px 20px 0 #cabbb3;
+    }
+  }
+
+  thead {
+    th {
+      position: sticky;
+      top: var(--header-height);
+      z-index: 2;
+      > * {
+        //box-shadow: 0 5px 0 -2px var(--color-bg);
+      }
+
+      &:first-child {
+        position: static;
+      }
+    }
+  }
+
+  td {
+    text-align: center;
+  }
+
+  tbody {
+    th {
+      z-index: 1;
+    }
+  }
+}
+
+.cell {
+  background: var(--color-bg-2);
+  height: 5rem;
+  margin: 2px;
+}
+
+.cellCorner {
+  background: var(--color-bg) !important;
+}
+
+.cellHead {
+  background: url('/assets/paper.jpg') center center;
+  color: var(--color-text-2);
+  outline-offset: -3px;
+  position: relative;
+  font-size: 1.3rem;
+  box-shadow: 0 0 0 2px var(--color-bg);
+}
+
+.cellHeadLeft {
+  font-weight: 500;
+  outline: 1px dashed black;
+}
+
+.cellHeadTop {
+  &:before {
+    content: '';
+    position: absolute;
+    height: 0.4rem;
+    background: var(--color-bg);
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.5rem;
+  }
+}
+
+.cellDefault {
+  border-radius: 5px;
+}
+
+.cellLeft {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  justify-content: flex-end;
+}
+
+.input {
+  position: relative;
+  background: none;
+  border: none;
+  display: flex;
+  height: 100%;
+  width: 13rem;
+  box-sizing: border-box;
+  align-items: center;
+  text-align: center;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: var(--color-text-2);
+
+  box-shadow: inset 0 0 20px 0 transparent;
+  transition: box-shadow 1s cubic-bezier(0.22, 1, 0.36, 1), background 0.8s;
+
+  &:focus {
+    outline: 1px dashed var(--color-text-2);
+    outline-offset: -3px;
+  }
+}
+
+.inputNumber {
+  font-size: 2rem;
+}
+
+.inputName {
+  font-weight: 700;
+  padding: 0 3rem 0 2rem;
+  text-align: center;
+}
+
+.inputSkipped {
+}
+
+.inputFilled {
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  height: 100%;
+  width: 100%;
+  color: var(--color-text-2);
+  font-size: 2rem;
+  outline: 1px dashed var(--color-text-2);
+  outline-offset: -3px;
+
+  span {
+    font-size: 1.2rem;
+  }
+}
+
+.removeButton {
+  color: var(--color-bg-4);
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  appearance: none;
+  background: 0;
+  filter: saturate(0);
+  border-radius: 0.4rem;
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.1rem dashed transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+
+  &:hover {
+    cursor: pointer;
+    filter: saturate(1);
+  }
+
+  &:focus {
+    outline: none;
+    filter: saturate(1);
+    border-color: var(--color-text-2);
+  }
+}
+
+.actionButton {
+  appearance: none;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid var(--color-text);
+  padding: 0 1rem;
+  background: none;
+  color: var(--color-text);
+  border-radius: 10rem;
+
+  span {
+    display: none;
+    @media (min-width: 35em) {
+      margin-left: 1rem;
+      display: inline;
+    }
+  }
+
+  &:focus {
+    outline: 1px dashed var(--color-text);
+    outline-offset: 2px;
+  }
+}
+
+.actions {
+  margin-left: 2rem;
+  display: flex;
+
+  > *:not(:first-of-type) {
+    margin-left: 1rem;
+  }
+}

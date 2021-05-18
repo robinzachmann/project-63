@@ -1,0 +1,48 @@
+@import 'reset';
+
+:root {
+  --font-weight-bold: 400;
+  --font-weight-light: 400;
+  --color-bg: #212121;
+  --color-bg-2: #0000000a;
+  --color-bg-3: #3b3b3b;
+  --color-bg-3-highlight: #242424;
+  --color-skipped: #ff3776;
+  --color-text: #ffffff;
+  --color-text-2: #262626;
+  --color-filled: #ff37c6;
+  --header-height: 5rem;
+  --color-warn: #e74444;
+}
+
+html {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 62.5%;
+  background: url('/assets/paper.jpg') center center;
+  background-size: cover;
+  color: var(--color-text);
+
+  //&:before {
+  //  content: '';
+  //  position: fixed;
+  //  top: 0;
+  //  bottom: 0;
+  //  left: 0;
+  //  right: 0;
+  //  border: 5px solid #3c3838;
+  //  z-index: 100;
+  //}
+}
+
+body {
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
