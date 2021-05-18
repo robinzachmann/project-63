@@ -73,9 +73,10 @@ export const CategoryInput = (props: {
           isFilled && styles.inputFilled,
         ])}
         type={'text'}
-        pattern={'d*'}
+        pattern={'[0-9]*'}
         autoComplete={'off'}
         data-lpignore={'true'} // last pass
+        inputMode={'numeric'}
       />
     </>
   )
