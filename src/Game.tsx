@@ -117,12 +117,6 @@ export const Game = (): React.ReactElement => {
                         ])}
                       >
                         <PlayerName playerState={player} />
-                        <button
-                          onClick={() => removePlayer(idx)}
-                          className={styles.removeButton}
-                        >
-                          ❌
-                        </button>
                       </div>
                     </th>
                   )

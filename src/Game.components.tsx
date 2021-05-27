@@ -1,6 +1,6 @@
 import { State, useState } from '@hookstate/core'
 import { CategoryKey, PlayerScore } from './Game.types'
-import React, { ChangeEvent, useContext } from 'react'
+import React, { ChangeEvent, useContext, useRef } from 'react'
 import styles from './Game.module.scss'
 import { CATEGORY_LABEL_MAP, confettiConfig } from './Game.config'
 import {
@@ -15,20 +15,44 @@ import { cx } from './style.utils'
 import { WinnersContext } from './Game.hooks'
 import Confetti from 'react-dom-confetti'
 
-export const PlayerName = ({
-  playerState,
-}: {
+export const PlayerName = (props: {
   playerState: State<PlayerScore>
 }): React.ReactElement => {
-  const _playerState = useState(playerState)
+  const playerState = useState(props.playerState)
+  const playerName = playerState.playerName.get()
+  const inputRef = useRef<HTMLInputElement>(null)
+  const prevPlayerName = useRef<string>(playerName)
+
+  if (playerName) {
+    prevPlayerName.current = playerName
+  }
+
+  const onBlur = () => {
+    if (!playerName) {
+      playerState.playerName.set(prevPlayerName.current)
+    }
+  }
+
+  const handleClick = () => {
+    playerState.playerName.set('')
+    inputRef.current?.focus()
+  }
+
   return (
-    <input
-      value={_playerState.playerName.get()}
-      onChange={(e) => _playerState.playerName.set(e.target.value)}
-      className={cx([styles.input, styles.inputName])}
-      autoComplete={'off'}
-      data-lpignore={'true'} // last pass
-    />
+    <>
+      <input
+        value={playerName}
+        onChange={(e) => playerState.playerName.set(e.target.value)}
+        className={cx([styles.input, styles.inputName])}
+        autoComplete={'off'}
+        data-lpignore={'true'} // last pass
+        ref={inputRef}
+        onBlur={onBlur}
+      />
+      <button onClick={handleClick} className={styles.removeButton}>
+        ❌
+      </button>
+    </>
   )
 }
 
