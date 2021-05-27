@@ -29,12 +29,6 @@ export const Game = (): React.ReactElement => {
     defaultPlayer2,
   ])
 
-  const removePlayer = (removeIdx: number): void => {
-    playerScoresList.set((playerList) =>
-      playerList.filter((_, idx) => idx !== removeIdx)
-    )
-  }
-
   const removeLastPlayer = (): void => {
     playerScoresList.set((playerList) => playerList.slice(0, -1))
   }
