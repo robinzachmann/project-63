@@ -95,7 +95,7 @@
 
 .cell {
   background: var(--color-bg-2);
-  height: 5rem;
+  height: 3.5rem;
   margin: 2px;
 }
 
@@ -121,11 +121,11 @@
   &:before {
     content: '';
     position: absolute;
-    height: 0.4rem;
+    height: 0.3rem;
     background: var(--color-bg);
     left: 1rem;
     right: 1rem;
-    bottom: 0.5rem;
+    bottom: 0.4rem;
   }
 }
 
