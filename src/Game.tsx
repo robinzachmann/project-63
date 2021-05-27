@@ -4,7 +4,7 @@ import styles from './Game.module.scss'
 import { useState } from '@hookstate/core'
 import { LOWER_CATEGORY_KEYS, UPPER_CATEGORY_KEYS } from './Game.config'
 import { PlayerScore } from './Game.types'
-import { makePlayer } from './Game.utils'
+import { INITIAL_SCORE, makePlayer } from './Game.utils'
 import { motion } from 'framer-motion'
 import {
   Bonus,
@@ -49,7 +49,11 @@ export const Game = (): React.ReactElement => {
 
   const reset = () => {
     playerScoresList.set((playerList) =>
-      playerList.map((playerState) => makePlayer(playerState.playerNo))
+      playerList.map((playerScore) => ({
+        ...INITIAL_SCORE,
+        playerName: playerScore.playerName,
+        playerNo: playerScore.playerNo,
+      }))
     )
   }
 

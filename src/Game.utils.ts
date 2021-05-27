@@ -59,22 +59,26 @@ export const getCategoryLabel = (categoryKey: CategoryKey): string => {
   return CATEGORY_LABEL_MAP[categoryKey]
 }
 
+export const INITIAL_SCORE: Score = {
+  one: null,
+  two: null,
+  three: null,
+  four: null,
+  five: null,
+  six: null,
+  threeOfAKind: null,
+  fourOfAKind: null,
+  smallStraight: null,
+  longStraight: null,
+  fullHouse: null,
+  kniffel: null,
+  chance: null,
+}
+
 export const makePlayer = (no: number): PlayerScore => {
   return {
+    ...INITIAL_SCORE,
     playerName: `Spieler:in ${no}`,
     playerNo: no,
-    one: null,
-    two: null,
-    three: null,
-    four: null,
-    five: null,
-    six: null,
-    threeOfAKind: null,
-    fourOfAKind: null,
-    smallStraight: null,
-    longStraight: null,
-    fullHouse: null,
-    kniffel: null,
-    chance: null,
   }
 }
