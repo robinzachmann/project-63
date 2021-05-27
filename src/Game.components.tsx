@@ -52,7 +52,7 @@ export const CategoryInput = (props: {
 
     if (inputValue === '') {
       categoryState.set(null)
-    } else if (!Number.isNaN(inputNumberValue) && inputNumberValue <= 40) {
+    } else if (!Number.isNaN(inputNumberValue) && inputNumberValue <= 50) {
       categoryState.set(inputNumberValue)
     }
   }
