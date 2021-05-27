@@ -3,6 +3,9 @@ import {
   CategoryKey,
   UPPER_CATEGORY_KEYS,
   CATEGORY_LABEL_MAP,
+  BONUS_THRESHOLD,
+  BONUS_VALUE,
+  UPPER_TARGET_MAP,
 } from './Game.config'
 import { PlayerScore, Score } from './Game.types'
 
@@ -45,7 +48,15 @@ export const calcLowerTotal = (score: Score): number => {
 }
 
 export const calcBonus = (sumTop: number): number => {
-  return sumTop >= 63 ? 35 : 0
+  return sumTop >= BONUS_THRESHOLD ? BONUS_VALUE : 0
+}
+
+export const calcCurrentBonusGap = (score: Score): number => {
+  return UPPER_CATEGORY_KEYS.reduce((gap, next) => {
+    const categoryScore = score[next]
+    const targetValue = UPPER_TARGET_MAP[next]
+    return categoryScore !== null ? gap + (categoryScore - targetValue) : gap
+  }, 0)
 }
 
 export const calcGrandTotal = (score: Score): number => {

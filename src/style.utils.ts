@@ -1,2 +1,2 @@
-export const cx = (classList: (string | boolean)[]): string =>
+export const cx = (classList: (string | boolean | null)[]): string =>
   classList.filter((val) => !!val).join(' ')

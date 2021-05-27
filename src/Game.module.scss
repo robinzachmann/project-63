@@ -191,10 +191,26 @@
   font-size: 2rem;
   outline: 1px dashed var(--color-text-2);
   outline-offset: -3px;
+  position: relative;
+}
 
-  span {
-    font-size: 1.2rem;
-  }
+.scoreExtra {
+  font-size: 1.2rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  height: 100%;
+  right: 23%;
+  color: var(--color-text-3);
+}
+
+.scoreExtraPositive {
+  color: var(--color-add);
+}
+
+.scoreExtraNegative {
+  color: var(--color-warn);
 }
 
 .removeButton {

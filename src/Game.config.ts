@@ -38,9 +38,20 @@ export const CATEGORY_LABEL_MAP: Record<CategoryKey, string> = {
   chance: 'Chance',
 }
 
-export type CategoryKey =
-  | typeof UPPER_CATEGORY_KEYS[number]
-  | typeof LOWER_CATEGORY_KEYS[number]
+export const UPPER_TARGET_MAP: Record<UpperCategoryKey, number> = {
+  one: 3,
+  two: 6,
+  three: 9,
+  four: 12,
+  five: 15,
+  six: 18,
+}
+
+export type UpperCategoryKey = typeof UPPER_CATEGORY_KEYS[number]
+
+export type LowerCategoryKey = typeof LOWER_CATEGORY_KEYS[number]
+
+export type CategoryKey = UpperCategoryKey | LowerCategoryKey
 
 export const BONUS_THRESHOLD = 63
 export const BONUS_VALUE = 35

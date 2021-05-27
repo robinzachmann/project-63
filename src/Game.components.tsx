@@ -10,6 +10,7 @@ import {
   getCategoryLabel,
   isTopFilled,
   calcGrandTotal,
+  calcCurrentBonusGap,
 } from './Game.utils'
 import { cx } from './style.utils'
 import { WinnersContext } from './Game.hooks'
@@ -177,14 +178,30 @@ export const CategoryRow = ({
   )
 }
 
-export const UpperTotal = ({
-  playerState,
-}: {
+export const UpperTotal = (props: {
   playerState: State<PlayerScore>
 }): React.ReactElement => {
-  const _playerState = useState(playerState)
-  const upperTotal = calcUpperTotal(_playerState.get())
-  return <div className={styles.score}>{upperTotal}</div>
+  const playerState = useState(props.playerState)
+  const playerScore = playerState.get()
+  const upperTotal = calcUpperTotal(props.playerState.get())
+  const currentBonusGap = calcCurrentBonusGap(playerScore)
+  return (
+    <div className={styles.score}>
+      {upperTotal}
+      <span
+        className={cx([
+          styles.scoreExtra,
+          currentBonusGap < 0
+            ? styles.scoreExtraNegative
+            : currentBonusGap > 0
+            ? styles.scoreExtraPositive
+            : null,
+        ])}
+      >
+        {currentBonusGap < 0 ? currentBonusGap : `+${currentBonusGap}`}
+      </span>
+    </div>
+  )
 }
 
 export const LowerTotal = ({
@@ -207,7 +224,8 @@ export const Bonus = (props: {
   const _topIsFilled = isTopFilled(score)
   return bonus ? (
     <div className={styles.score}>
-      {bonus}&nbsp;&nbsp;<span>✅</span>
+      {bonus}
+      <span className={cx([styles.scoreExtra])}>✅</span>
     </div>
   ) : (
     <div className={styles.score}>{_topIsFilled ? '❌' : '🤔'}</div>
