@@ -255,6 +255,45 @@
   }
 }
 
+.actionButtonWithBadge {
+  position: relative;
+
+  &:after {
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(50%, 20%);
+
+    @media (min-width: 35em) {
+      display: none;
+    }
+  }
+}
+
+.actionButtonAdd {
+  &:after {
+    content: '+';
+    background: var(--color-add);
+    color: white;
+  }
+}
+
+.actionButtonRemove {
+  &:after {
+    content: '-';
+    background: var(--color-warn);
+    color: white;
+  }
+}
+
 .actions {
   margin-left: 2rem;
   display: flex;

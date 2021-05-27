@@ -69,21 +69,29 @@ export const Game = (): React.ReactElement => {
               className={styles.actionButton}
               whileHover={{ scale: 1.2, x: -5 }}
             >
-              ♻️ <span>reset</span>
-            </motion.button>
-            <motion.button
-              onClick={addPlayer}
-              className={styles.actionButton}
-              whileHover={{ scale: 1.2 }}
-            >
-              🙋 <span>add</span>
+              🗑️ <span>reset</span>
             </motion.button>
             <motion.button
               onClick={removeLastPlayer}
-              className={styles.actionButton}
-              whileHover={{ scale: 1.2, x: 5 }}
+              className={cx([
+                styles.actionButton,
+                styles.actionButtonWithBadge,
+                styles.actionButtonRemove,
+              ])}
+              whileHover={{ scale: 1.2 }}
             >
               🙅 <span>remove</span>
+            </motion.button>
+            <motion.button
+              onClick={addPlayer}
+              className={cx([
+                styles.actionButton,
+                styles.actionButtonWithBadge,
+                styles.actionButtonAdd,
+              ])}
+              whileHover={{ scale: 1.2, x: 5 }}
+            >
+              🙋 <span>add</span>
             </motion.button>
           </div>
         </div>
