@@ -34,11 +34,12 @@ export const Game = (): React.ReactElement => {
   }
 
   const addPlayer = () => {
-    const maxPlayerNo = playerScoresList
-      .get()
-      .map((playerState) => playerState.playerNo)
-      .reduce((prev, next) => Math.max(prev, next), 0)
-    playerScoresList.merge([makePlayer(maxPlayerNo + 1)])
+    playerScoresList.merge((playerState) => {
+      const maxPlayerNo = playerState
+        .map((playerState) => playerState.playerNo)
+        .reduce((prev, next) => Math.max(prev, next), 0)
+      return [makePlayer(maxPlayerNo + 1)]
+    })
   }
 
   const reset = () => {
