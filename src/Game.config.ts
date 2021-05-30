@@ -10,9 +10,9 @@ export const UPPER_CATEGORY_KEYS = [
 export const LOWER_CATEGORY_KEYS = [
   'threeOfAKind',
   'fourOfAKind',
+  'fullHouse',
   'smallStraight',
   'longStraight',
-  'fullHouse',
   'kniffel',
   'chance',
 ] as const
