@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Game.module.scss'
 
-import { useState } from '@hookstate/core'
+import { createState, useState } from '@hookstate/core'
+import { Persistence } from '@hookstate/persistence'
 import { LOWER_CATEGORY_KEYS, UPPER_CATEGORY_KEYS } from './Game.config'
 import { PlayerScore } from './Game.types'
 import { INITIAL_SCORE, makePlayer } from './Game.utils'
@@ -18,16 +19,14 @@ import {
 import { WinnerProvider } from './Game.hooks'
 import { cx } from './style.utils'
 
-const defaultPlayer1 = makePlayer(1)
-const defaultPlayer2 = makePlayer(2)
-
-// <Confetti active={winningPlayersList.length > 0} config={confettiConfig} />
+const globalState = createState<PlayerScore[]>([makePlayer(1), makePlayer(2)])
 
 export const Game = (): React.ReactElement => {
-  const playerScoresList = useState<PlayerScore[]>([
-    defaultPlayer1,
-    defaultPlayer2,
-  ])
+  const playerScoresList = useState(globalState)
+
+  useEffect(() => {
+    globalState.attach(Persistence('game-state'))
+  }, [])
 
   const removeLastPlayer = (): void => {
     playerScoresList.set((playerList) => playerList.slice(0, -1))
