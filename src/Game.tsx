@@ -18,11 +18,15 @@ import {
 } from './Game.components'
 import { WinnerProvider } from './Game.hooks'
 import { cx } from './style.utils'
+import { DiceIcon } from 'src/DiceIcon'
+import { DiceBoard } from 'src/DiceBoard'
+import { useDiceBoard } from 'src/DiceBoardContext'
 
 const globalState = createState<PlayerScore[]>([makePlayer(1), makePlayer(2)])
 
 export const Game = (): React.ReactElement => {
   const playerScoresList = useState(globalState)
+  const { toggleBoard } = useDiceBoard()
 
   useEffect(() => {
     globalState.attach(Persistence('game-state'))
@@ -53,6 +57,7 @@ export const Game = (): React.ReactElement => {
 
   return (
     <WinnerProvider playerScoresList={playerScoresList}>
+      <DiceBoard />
       <form
         className={styles.board}
         onSubmit={(e) => e.preventDefault()}
@@ -64,6 +69,14 @@ export const Game = (): React.ReactElement => {
           </h1>
           <div className={styles.actions}>
             {/*<FinishGame playerScoresList={playerScoresList} />*/}
+            <motion.button
+              className={styles.actionButton}
+              whileHover={{ scale: 1.2, x: -5 }}
+              onClick={toggleBoard}
+            >
+              <DiceIcon />
+              <span>roll</span>
+            </motion.button>
             <motion.button
               onClick={reset}
               className={styles.actionButton}

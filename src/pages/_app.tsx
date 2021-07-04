@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
 import 'src/global.scss'
+import { DiceBoardProvider } from 'src/DiceBoardContext'
 
 const App = (props: AppProps): React.ReactElement => {
   const { Component, pageProps } = props
@@ -28,7 +29,9 @@ const App = (props: AppProps): React.ReactElement => {
           rel="stylesheet"
         />
       </Head>
-      <Component {...pageProps} />
+      <DiceBoardProvider>
+        <Component {...pageProps} />
+      </DiceBoardProvider>
     </>
   )
 }

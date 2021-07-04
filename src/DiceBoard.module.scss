@@ -1,0 +1,128 @@
+.board {
+  position: relative;
+  padding: 5vw;
+  padding: clamp(1rem, 5vw, 4rem);
+  display: flex;
+}
+
+.dicesGrid {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  margin: -2rem 0 0 -2rem;
+
+  > * {
+    margin: 2rem 0 0 2rem;
+  }
+}
+
+.rollsCountDisplay {
+  --display-size: 2.5rem;
+  position: absolute;
+  left: 0;
+  padding-left: 5vw;
+  bottom: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-3);
+  height: var(--display-size);
+  padding-right: 0.7rem;
+  font-weight: bold;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 0;
+    border-left: 1.3rem solid var(--color-bg-3);
+    border-top: var(--display-size) solid transparent;
+  }
+}
+
+.diceButton {
+  display: block;
+  padding: unset;
+  border: unset;
+  background-color: transparent;
+  outline: unset;
+  box-shadow: unset;
+
+  &:disabled {
+    filter: grayscale(100%);
+  }
+  &:focus {
+    outline: 2px dashed white;
+    outline-offset: 5px;
+  }
+}
+
+.locked {
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 0 0 4px #ff9e1f, 0 0 5px 0 rgba(255, 102, 0, 0.4);
+  background: #ff9e1f;
+  outline-offset: 2px;
+
+  &:after {
+    content: '🔒';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: inset 0 0 20px 2px #ff9e1f, inset 0 0 2px 1px #ff9e1f;
+    background: rgb(95, 47, 15);
+    border-radius: 100px;
+    height: 2.2rem;
+    width: 2.2rem;
+
+    position: absolute;
+    bottom: -0.8rem;
+    right: -0.8rem;
+    font-size: 1.3rem;
+  }
+}
+
+.Modal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: auto;
+
+  --modal-bg: rgba(0, 0, 0, 0.3);
+
+  background: var(--modal-bg);
+}
+
+.ModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.closeButton {
+  position: absolute;
+  right: 5vw;
+  bottom: 100%;
+  margin-bottom: 1rem;
+
+  background: var(--modal-bg);
+  border: unset;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 3rem;
+  padding: 0;
+}
+
+.actionButton {
+  width: 5rem;
+  height: 5rem;
+  border: unset;
+  border-radius: 5px;
+}

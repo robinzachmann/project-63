@@ -14,3 +14,5 @@ export interface PlayerResult extends PlayerScore {
 }
 
 export type { CategoryKey }
+
+export type BoardState = { isOpen: boolean }
