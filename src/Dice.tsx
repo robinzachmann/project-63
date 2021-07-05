@@ -45,19 +45,20 @@ export const Dice = React.memo<TProps>(
     const [tmpValue, setTmpValue] = useState(randomValue())
     const timeoutRef = useRef<number>(0)
 
-    useEffect(() => {
-      clearTimeout(timeoutRef.current)
-      if (rolling) {
-        setTmpValue(randomValue())
-        const timeout = setTimeout(() => {
-          setTmpValue(randomValue()) // will trigger a rerender
-        }, Math.random() * 1000)
-        timeoutRef.current = (timeout as unknown) as number
-      }
-    }, [rolling, tmpValue])
+    // useEffect(() => {
+    //   clearTimeout(timeoutRef.current)
+    //   if (rolling) {
+    //     setTmpValue(randomValue())
+    //     const timeout = setTimeout(() => {
+    //       setTmpValue(randomValue()) // will trigger a rerender
+    //     }, Math.random() * 1000)
+    //     timeoutRef.current = (timeout as unknown) as number
+    //   }
+    // }, [rolling, tmpValue])
 
-    const displayValue = rolling ? tmpValue : value
-    const valueString = valueClassMap[displayValue]
+    // const displayValue = rolling ? tmpValue : value
+    // const valueString = valueClassMap[displayValue]
+    const valueString = valueClassMap[value]
 
     return (
       <div
@@ -68,12 +69,7 @@ export const Dice = React.memo<TProps>(
         }}
         className={cx([styles.dice, styles[`dice--${valueString}`]])}
       >
-        <div
-          className={cx([
-            styles._3dbox,
-            // rolling && tmpValue > 4 && styles._3dface_rolling,
-          ])}
-        >
+        <div className={cx([styles._3dbox, rolling && styles._3dface_rolling])}>
           <Face size={size} index={0} />
           <Face size={size} index={1} />
           <Face size={size} index={2} />

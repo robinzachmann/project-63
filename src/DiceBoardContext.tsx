@@ -67,7 +67,7 @@ export const DiceBoardProvider: React.FC = (props) => {
             rolling: false,
             currentValue: prev.locked ? prev.currentValue : randomValue(),
           }))
-        }, Math.max(Math.random() * 2000, 300))
+        }, Math.max(Math.random() * 2000, 500))
       })
     })
   }
