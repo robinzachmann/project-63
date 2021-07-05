@@ -218,17 +218,27 @@ export const Bonus = (props: {
   playerState: State<PlayerScore>
 }): React.ReactElement => {
   const playerState = useState(props.playerState)
-  const score = playerState.get()
-  const upperTotal = calcUpperTotal(score)
+  const playerScore = playerState.get()
+  const upperTotal = calcUpperTotal(playerScore)
   const bonus = calcBonus(upperTotal)
-  const _topIsFilled = isTopFilled(score)
+  const _topIsFilled = isTopFilled(playerScore)
+  const currentBonusGap = calcCurrentBonusGap(playerScore)
+
   return bonus ? (
     <div className={styles.score}>
       {bonus}
       <span className={cx([styles.scoreExtra])}>✅</span>
     </div>
   ) : (
-    <div className={styles.score}>{_topIsFilled ? '❌' : '🤔'}</div>
+    <div className={styles.score}>
+      {_topIsFilled
+        ? '❌'
+        : currentBonusGap > 0
+        ? '😌️'
+        : currentBonusGap < 0
+        ? '😰'
+        : '🤔'}
+    </div>
   )
 }
 
